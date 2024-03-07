@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
- *
+ * Classe Entity qui représente la table Discount qui est associée à Customer
  * @author Matthieu R
  */
 @Entity

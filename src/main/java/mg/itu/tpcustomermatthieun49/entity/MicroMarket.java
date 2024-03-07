@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 /**
- *
+ * Classe Entity qui représente la table Micro_market qui est associée à la table Customer
  * @author Matthieu R
  */
 @Entity

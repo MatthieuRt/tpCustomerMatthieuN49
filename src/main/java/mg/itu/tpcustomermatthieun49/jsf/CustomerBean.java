@@ -4,13 +4,16 @@
  */
 package mg.itu.tpcustomermatthieun49.jsf;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import mg.itu.tpcustomermatthieun49.entity.Customer;
 import mg.itu.tpcustomermatthieun49.service.CustomerManager;
+import org.primefaces.model.FilterMeta;
 
 /**
  * Backing bean de la page customerList.xhtml.
@@ -22,11 +25,18 @@ import mg.itu.tpcustomermatthieun49.service.CustomerManager;
 public class CustomerBean implements Serializable {
 
     private List<Customer> customerList;
+    private List<FilterMeta> filterBy;
+    private List<Customer> filteredCustomers;
 
     @Inject
     private CustomerManager customerManager;
 
     public CustomerBean() {
+    }
+
+    @PostConstruct
+    public void init() {
+        filterBy = new ArrayList<>();
     }
 
     /**
@@ -37,5 +47,20 @@ public class CustomerBean implements Serializable {
             customerList = customerManager.getAllCustomers();
         }
         return customerList;
+    }
+
+    /**
+     * Retourne la liste des clients filtrés pour affichage dans une DataTable.
+     */
+    public List<Customer> getFilteredCustomers() {
+        return filteredCustomers;
+    }
+
+    public List<FilterMeta> getFilterBy() {
+        return filterBy;
+    }
+
+    public void setFilteredCustomers(List<Customer> filteredCustomers) {
+        this.filteredCustomers = filteredCustomers;
     }
 }
